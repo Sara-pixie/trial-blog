@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 
 //express app
 const app = express();
@@ -8,6 +9,10 @@ app.set('view engine', 'ejs'); //will automatically look into views folder
 
 //listen for requests
 app.listen(3000);
+
+//middleware & static files
+app.use(express.static('public')); //allows front-end to access files in public file
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
     const blogs = [
