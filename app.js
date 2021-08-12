@@ -19,6 +19,7 @@ app.set('view engine', 'ejs'); //will automatically look into views folder
 
 //middleware & static files
 app.use(express.static('public')); //allows front-end to access files in public file
+app.use(express.urlencoded({ extended: true })); //parsing the encoded data from front-end to use it as an object later
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
@@ -42,6 +43,17 @@ app.get('/blogs', (req, res) => {
 
 app.get('/blogs/create', (req, res) => {
     res.render('create', { title: 'New Blog' });
+});
+
+app.post('/blogs', (req, res) => {
+    const blog = new Blog(req.body);
+    blog.save()
+        .then((result) => {
+            res.redirect('/blogs');
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 // default 404 page 
