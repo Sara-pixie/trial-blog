@@ -9,8 +9,23 @@
                 <div class="content">
                     <p><%= blog.body %></p>
                 </div>
+                <a class="delete" data-doc="<%= blog._id %>" href="">Delete</a>
             </div>
             <%- include('./partials/footer.ejs') %>
+        <script>
+            const deleteBtn = document.querySelector('a.delete');
+            deleteBtn.addEventListener('click', (event) => {
+                const endpoint = `/blogs/${deleteBtn.dataset.doc}`;
+                fetch(endpoint, { method: 'DELETE' })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        window.location.href = data.redirect;
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+            })
+        </script>
     </body>
 
 </html>

@@ -32,17 +32,6 @@ app.get('/about', (req, res) => {
 
 // blog routes
 
-app.get('/blogs/:id', (req, res) => {
-    const id = req.params.id;
-    Blog.findById(id)
-        .then(result => {
-            res.render('details', { blog: result, title: 'Blog Details' })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-});
-
 app.get('/blogs', (req, res) => {
     Blog.find().sort({ createdAt: -1 })
         .then((result) => {
@@ -55,6 +44,28 @@ app.get('/blogs', (req, res) => {
 
 app.get('/blogs/create', (req, res) => {
     res.render('create', { title: 'New Blog' });
+});
+
+app.get('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result => {
+            res.render('details', { blog: result, title: 'Blog Details' })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+});
+
+app.delete('/blogs/:id', (req, res) => {
+    const id = req.params.id;
+    Blog.findByIdAndDelete(id)
+        .then((result) => {
+            res.json({ redirect: '/blogs' }) //because front-end
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 app.post('/blogs', (req, res) => {
