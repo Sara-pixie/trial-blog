@@ -187,3 +187,7 @@ p {
 .delete:hover {
   background-color: var(--dark-red-color);
 }
+/*404*/
+.not-found img {
+  width: 100%;
+}
