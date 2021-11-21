@@ -4,12 +4,16 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="about content">
-        <h2>About BNM</h2>
-        <p>Blogs & Magic is my first ever full-stack app. It is meant as a learning tool for myself to master the process.</p>
-        <p>I'm following The Net Ninja tutorial "Node.js Crash Course Tutorial" to begin with: <br />
-        <a href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9jsz4LDYc6kv3ymONOKxwBU">See Here</a> <br />
-        Later I'll be adding different features to enhance the site as well!</p>
-        <p>You're welcome to explore.</p>
+        <h2>About B&M</h2>
+        <p>Blogs & Magic is my first ever full-stack app. It is meant as a learning tool for myself to master the process.</p><br />
+        <p>I'm following The Net Ninja tutorial "Node.js Crash Course Tutorial" to begin with: <br /><br />
+        <div class="aboutVideo">
+            <iframe class="responsive-iframe" width="50%" height="40%" src="https://www.youtube.com/embed/zb3Qk8SG5Ms">
+            </iframe>
+        </div><br />
+        <p><a class="link" href="https://www.youtube.com/playlist?list=PL4cUxeGkcC9jsz4LDYc6kv3ymONOKxwBU">Here's the full playlist</a> <br /><br />
+        Later I'll be adding different features to enhance the site as well!<br />
+        You're welcome to explore.</p>
     </div>
     <%- include('./partials/footer.ejs') %>
 </body>
