@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="create-blog content">
+        <form>
+            <label for="title">Blog title:</label>
+            <input type="text" id="title" name= "title" required value='<%= blog.title %>'>
+            <label for="snippet">Blog snippet:</label>
+            <input type="text" id="snippet" name="snippet" required value='<%= blog.snippet %>'>
+            <label for="body">Blog body:</label>
+            <textarea id="body" name="body" required><%= blog.body %></textarea>
+            <button id="submitBtn" data-doc="<%= blog._id %>">Submit</button>
+        </form>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+    <script>
+        const submitBtn = document.querySelector('#submitBtn');
+        submitBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            let id = submitBtn.getAttribute('data-doc');
+            let title = document.querySelector('#title').value;
+            let snippet = document.querySelector('#snippet').value;
+            let body = document.querySelector('#body').value;
+            let editedBlog = { id, title, snippet, body }
+            console.log(editedBlog);
+            submitBtn.setAttribute('data-doc', editedBlog);
+            const endpoint = `/blogs/edit/${id}`;
+            fetch(endpoint, { method: 'PUT' })
+                .then((response) => response.json())
+                .then((data) => {
+                    window.location.href = data.redirect;
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            });
+    </script>
+</body>
+
+</html>

@@ -10,6 +10,7 @@
                     <p><%= blog.body %></p>
                 </div>
                 <a class="delete" data-doc="<%= blog._id %>" href="">Delete</a>
+                <a class="edit" href="/blogs/edit/<%= blog._id %>">Edit</a>
             </div>
             <%- include('../partials/footer.ejs') %>
         <script>
